@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/YASIN-YILDIZQ/Auth-API-With-JWT#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
   }
 }
