@@ -1,0 +1,28 @@
+{
+  "name": "auth_api_with_jwt",
+  "version": "1.0.0",
+  "description": "An application that performs trusted entry and exit controls and data connection",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YASIN-YILDIZQ/Auth-API-With-JWT.git"
+  },
+  "keywords": [
+    "api",
+    "auth",
+    "mongodb",
+    "jwt"
+  ],
+  "author": "Yasin Yıldız",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YASIN-YILDIZQ/Auth-API-With-JWT/issues"
+  },
+  "homepage": "https://github.com/YASIN-YILDIZQ/Auth-API-With-JWT#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
