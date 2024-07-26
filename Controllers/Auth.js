@@ -5,6 +5,7 @@ const { SendJwtClient } = require("../Helpers/Authorization/TokenHelpers");
 const { validateUserInput, comparePassword } = require("../Helpers/Inputs/InputHelpers");
 const sendMail = require("../Helpers/Libraries/SendEmail");
 
+//Get All Register
 const getAllRegister = asyncErrorWrapper(async (req, res, next) => {
     const { name, email, password, role } = req.body;
     const user = await User.create({ name, email, password, role });
@@ -34,7 +35,7 @@ const getUser = (req, res, next) => {
             name: req.user.name
         }
     });
-}
+};
 
 // Logout user
 const logout = asyncErrorWrapper(async (req, res, next) => {
@@ -99,8 +100,7 @@ const forgotpassword = asyncErrorWrapper(async (req, res, next) => {
 });
 
 
-
-
+//Reset Password
 const resetpassword=asyncErrorWrapper(async (req, res, next) => {
 const {resetPasswordToken}=req.query;
 const {password}=req.body;
@@ -126,6 +126,20 @@ await user.save();
 })
 
 });
+
+//Update Auth
+const editDetails=asyncErrorWrapper(async (req, res, next) =>{
+const editInformations=req.body;
+const user=await User.findByIdAndUpdate(req.user.id,editInformations,{
+    new:true,
+    runValidators:true
+});
+return res.status(200).json({
+    success:true,
+    data:user
+});
+});
+ 
 module.exports = {
     getAllRegister,
     getUser,
@@ -133,5 +147,6 @@ module.exports = {
     logout,
     imageUpload,
     forgotpassword,
-    resetpassword
+    resetpassword,
+    editDetails
 }
