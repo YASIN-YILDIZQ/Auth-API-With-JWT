@@ -8,6 +8,7 @@ Kullanım:
 Kullanıcı şifrelerini güvenli bir şekilde saklamak için hashPassword fonksiyonu kullanılır.
 Kullanıcı oturumlarını yönetmek için JWT tokenlar oluşturmak üzere generateToken fonksiyonu kullanılır.
 Şifre sıfırlama işlemleri için geçici bir token oluşturmak üzere generateResetToken fonksiyonu kullanılır.
+
 2. Admin Router (Yönetici Yönlendirme)
 Ne İşe Yarar:
 
@@ -22,6 +23,7 @@ bash
 Kodu kopyala
 POST /admin/block/123  # Kullanıcı ID'si 123 olan kullanıcıyı engeller
 DELETE /admin/delete/123  # Kullanıcı ID'si 123 olan kullanıcıyı siler
+
 3. Answer Router (Cevap Yönlendirme)
 Ne İşe Yarar:
 
@@ -40,6 +42,7 @@ POST /answers/add  # Yeni bir cevap ekler
 PUT /answers/edit/123  # ID'si 123 olan cevabı günceller
 DELETE /answers/delete/123  # ID'si 123 olan cevabı siler
 POST /answers/like/123  # ID'si 123 olan cevabı beğenir
+
 4. Auth Router (Kimlik Doğrulama Yönlendirme)
 Ne İşe Yarar:
 
@@ -56,6 +59,7 @@ Kodu kopyala
 POST /auth/register  # Yeni bir kullanıcı kaydı oluşturur
 POST /auth/login  # Kullanıcı oturumunu açar
 POST /auth/reset-password  # Şifre sıfırlama işlemi başlatır
+
 5. Index Router (Ana Yönlendirme)
 Ne İşe Yarar:
 
@@ -66,6 +70,7 @@ Diğer router'ları (userRouter, adminRouter, answerRouter, authRouter, question
 Örnek Kullanım:
 
 Örneğin, /users, /admin, /answers, /auth, /questions gibi endpoint'lere erişim sağlar.
+
 6. Question Router (Soru Yönlendirme)
 Ne İşe Yarar:
 
@@ -84,6 +89,7 @@ POST /questions/add  # Yeni bir soru ekler
 PUT /questions/edit/123  # ID'si 123 olan soruyu günceller
 DELETE /questions/delete/123  # ID'si 123 olan soruyu siler
 POST /questions/like/123  # ID'si 123 olan soruyu beğenir
+
 Genel Kullanım Senaryosu
 Kullanıcı Kayıt ve Oturum Açma:
 
