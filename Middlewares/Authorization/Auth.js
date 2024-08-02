@@ -2,7 +2,9 @@ const CustomError=require("../../Helpers/Error/CustomError");
 const  jwt=require("jsonwebtoken");
 const asyncErrorWrapper=require("express-async-handler");
 const User=require("../../Models/User");
+const Question=require("../../Models/Question");
 const {isTokenIncluded,getAccessTokenFromHeader}=require("../../Helpers/Authorization/TokenHelpers");
+const Answer = require("../../Models/Answer");
 
 const getAccessToRoute=(req,res,next)=>{
     const {JWT_SECREY_KEY}=process.env;
@@ -26,7 +28,7 @@ const getAccessToRoute=(req,res,next)=>{
     })
  
 }
-
+//Admin Control
 const getAdminAccess=asyncErrorWrapper(async (req,res,next)=>{
    const {id}=req.user;
    const user=await User.findById(id);
@@ -35,6 +37,34 @@ const getAdminAccess=asyncErrorWrapper(async (req,res,next)=>{
    }
    next();
 });
+//Question Control
+const getQuestionOwnerAccess = asyncErrorWrapper(async (req, res, next) => {
+    const userId = req.user.id;
+    const questionId = req.params.id;
+  
+    const question = await Question.findById(questionId);
+   
+  
+    if (question.user.toString() !== userId.toString()) {
+      return next(new CustomError("Başka Bir Kullanıcının Sorusunu Düzenleme Hakkınız Yok!", 403));
+    }
+    
+    next();
+  });
+  const getAnswerOwnerAccess = asyncErrorWrapper(async (req, res, next) => {
+    const userId = req.user.id;
+    const answerId = req.params.answer_id;
+  
+    const answer = await Answer.findById(answerId);
+   
+  
+    if (answer.user.toString() !== userId.toString()) {
+      return next(new CustomError("Başka Bir Kullanıcının Sorusunu Düzenleme Hakkınız Yok!", 403));
+    }
+    
+    next();
+  });
+  
 module.exports={
-    getAccessToRoute,getAdminAccess
+    getAccessToRoute,getAdminAccess,getQuestionOwnerAccess,getAnswerOwnerAccess
 }
